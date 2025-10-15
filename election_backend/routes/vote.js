@@ -29,6 +29,6 @@ router.post("/cast", verifyToken, isVoter, voteController.castVote);
 
 // Public route to see results
 // router.get("/results", voteController.getResults);
-router.get('/api/results', voteController.getResults);
-
+// router.get('/api/results', voteController.getResults);
+router.get("/results", voteController.getResults);
 module.exports = router;
