@@ -1,0 +1,223 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #e3f2fd, #fffde7);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background: linear-gradient(to right, #1a237e, #3949ab);
+  color: white;
+  font-weight: 400;
+  padding: 30px 20px 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1{
+  font-weight: 500;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 68px;
+  font-weight: 400px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers everything inside header */
+}
+
+/* Logo styling */
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+  color: white;
+}
+
+/* Navbar centered horizontally */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 10px 18px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Responsive header adjustments */
+@media (min-width: 768px) {
+  .logo {
+    flex: 1 1 auto;
+    text-align: left;
+    font-size: 26px;
+    margin-bottom: 0;
+  }
+
+  .navbar {
+    flex: 1 1 auto;
+    justify-content: flex-end;
+  }
+}
+img{
+    position: fixed;
+        /* Make it square */
+      top: 25px;
+      left: 15px;
+      height: 90px;
+      width: 250px;
+      border-radius: 10px;
+      z-index: 9999;
+
+}
+/* Main content section */
+main {
+  flex: 1;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Project Description */
+.project-description {
+  margin-top: 30px;
+  max-width: 800px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.project-description h2 {
+  color: #1a237e;
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+.project-description p {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Election Countdown */
+.election-status {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 40px 0;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.election-status h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: #1a237e;
+}
+
+#countdown {
+  font-size: 22px;
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+/* Stats Section */
+.stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat-box {
+  background-color: #ffffff;
+  padding: 25px 35px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  min-width: 220px;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+}
+
+.stat-box strong {
+  display: block;
+  font-size: 20px;
+  color: #1565c0;
+  margin-bottom: 10px;
+}
+
+.stat-box span {
+  font-size: 32px;
+  color: #0d47a1;
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  background-color: #1a237e;
+  color: white;
+  text-align: center;
+  padding: 20px 10px; /* Increased from 15px */
+  font-size: 14px;
+  margin-top: 40px; /* Adds space above footer */
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

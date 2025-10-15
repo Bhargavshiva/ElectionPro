@@ -1,0 +1,299 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Voters</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body { background-color: #f8f9fa; padding: 20px; }
+    h2 { color: #6f4e37; }
+    #formSection input { margin-bottom: 10px; }
+    .btn { margin-right: 5px; }
+    .back-link {
+      position: fixed;
+      top: 5px;
+      left: 15px;
+      background-color: #6f4e37;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .back-link:hover { background-color: #563827; }
+  </style>
+</head>
+<body>
+  <a href="admin-dashboard.html" class="back-link">← Back</a>
+
+  <div class="container mt-4">
+    <h2 class="mb-2">Manage Voters</h2>
+    <p>Fields: Voter ID, Name, Age, Constituency</p>
+
+    <button class="btn btn-danger mb-3" onclick="showAddForm()">+ Add Voter</button>
+
+    <div id="formSection" class="mb-4" style="display: none;">
+      <input type="text" id="voterId" class="form-control" placeholder="Voter ID">
+      <input type="text" id="voterName" class="form-control" placeholder="Name">
+      <input type="number" id="voterAge" class="form-control" placeholder="Age">
+      <input type="text" id="voterConstituency" class="form-control" placeholder="Constituency">
+      <button class="btn btn-success mt-2 w-100" onclick="addVoter()">Save Voter</button>
+    </div>
+
+    <h4>All Voters</h4>
+    <table class="table table-bordered">
+      <thead class="table-danger text-white">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Constituency</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="voterTable"></tbody>
+    </table>
+  </div>
+
+  <script>
+    let voters = [];
+
+    function showAddForm() {
+      document.getElementById('formSection').style.display = 'block';
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById("voterTable");
+      tbody.innerHTML = '';
+      voters.forEach((voter, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td contenteditable="false">${voter.id}</td>
+          <td contenteditable="false">${voter.name}</td>
+          <td contenteditable="false">${voter.age}</td>
+          <td contenteditable="false">${voter.constituency}</td>
+          <td>
+            <button class="btn btn-info btn-sm me-1" onclick="editVoter(${index})">✏</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteVoter(${index})">🗑</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function addVoter() {
+      const id = document.getElementById("voterId").value;
+      const name = document.getElementById("voterName").value;
+      const age = document.getElementById("voterAge").value;
+      const constituency = document.getElementById("voterConstituency").value;
+
+      if (!id || !name || !age || !constituency) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      voters.push({ id, name, age, constituency });
+      renderTable();
+
+      // Clear inputs
+      document.getElementById("voterId").value = '';
+      document.getElementById("voterName").value = '';
+      document.getElementById("voterAge").value = '';
+      document.getElementById("voterConstituency").value = '';
+      document.getElementById("formSection").style.display = 'none';
+    }
+
+    function editVoter(index) {
+      const row = document.getElementById("voterTable").rows[index];
+      for (let i = 0; i < 4; i++) {
+        row.cells[i].contentEditable = true;
+      }
+
+      const saveBtn = document.createElement("button");
+      saveBtn.className = "btn btn-success btn-sm ms-1";
+      saveBtn.innerText = '💾';
+      saveBtn.onclick = () => saveVoter(index);
+      row.cells[4].appendChild(saveBtn);
+    }
+
+    function saveVoter(index) {
+      const row = document.getElementById("voterTable").rows[index];
+      const id = row.cells[0].innerText;
+      const name = row.cells[1].innerText;
+      const age = row.cells[2].innerText;
+      const constituency = row.cells[3].innerText;
+
+      voters[index] = { id, name, age, constituency };
+      renderTable();
+    }
+
+    function deleteVoter(index) {
+      if (confirm("Are you sure you want to delete this voter?")) {
+        voters.splice(index, 1);
+        renderTable();
+      }
+    }
+
+    // Initial render
+    renderTable();
+  </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Voters</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body { background-color: #f8f9fa; padding: 20px; }
+    h2 { color: #6f4e37; }
+    #formSection input { margin-bottom: 10px; }
+    .btn { margin-right: 5px; }
+    .back-link {
+      position: fixed;
+      top: 5px;
+      left: 15px;
+      background-color: #6f4e37;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .back-link:hover { background-color: #563827; }
+  </style>
+</head>
+<body>
+  <a href="admin-dashboard.html" class="back-link">← Back</a>
+
+  <div class="container mt-4">
+    <h2 class="mb-2">Manage Voters</h2>
+    <p>Fields: Voter ID, Name, Age, Constituency</p>
+
+    <button class="btn btn-danger mb-3" onclick="showAddForm()">+ Add Voter</button>
+
+    <div id="formSection" class="mb-4" style="display: none;">
+      <input type="text" id="voterId" class="form-control" placeholder="Voter ID">
+      <input type="text" id="voterName" class="form-control" placeholder="Name">
+      <input type="number" id="voterAge" class="form-control" placeholder="Age">
+      <input type="text" id="voterConstituency" class="form-control" placeholder="Constituency">
+      <button class="btn btn-success mt-2 w-100" onclick="addVoter()">Save Voter</button>
+    </div>
+
+    <h4>All Voters</h4>
+    <table class="table table-bordered">
+      <thead class="table-danger text-white">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Constituency</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="voterTable"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:5000/api/participants"; // ✅ Adjust port if needed
+    let voters = [];
+
+    async function fetchVoters() {
+      const res = await fetch(API_URL);
+      voters = await res.json();
+      renderTable();
+    }
+
+    function showAddForm() {
+      document.getElementById('formSection').style.display = 'block';
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById("voterTable");
+      tbody.innerHTML = '';
+      voters.forEach((voter, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${voter.id}</td>
+          <td>${voter.name}</td>
+          <td>${voter.age}</td>
+          <td>${voter.constituency}</td>
+          <td>
+            <button class="btn btn-info btn-sm me-1" onclick="editVoter(${index})">✏</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteVoter('${voter.id}')">🗑</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    async function addVoter() {
+      const participantId = document.getElementById("voterId").value;
+      const name = document.getElementById("voterName").value;
+      const age = document.getElementById("voterAge").value;
+      const constituency = document.getElementById("voterConstituency").value;
+
+      if (!participantId || !name || !age || !constituency) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ participantId, name, age, constituency })
+      });
+
+      await fetchVoters();
+
+      // Clear inputs
+      document.getElementById("voterId").value = '';
+      document.getElementById("voterName").value = '';
+      document.getElementById("voterAge").value = '';
+      document.getElementById("voterConstituency").value = '';
+      document.getElementById("formSection").style.display = 'none';
+    }
+
+    function editVoter(index) {
+      const row = document.getElementById("voterTable").rows[index];
+      for (let i = 0; i < 4; i++) row.cells[i].contentEditable = true;
+
+      const saveBtn = document.createElement("button");
+      saveBtn.className = "btn btn-success btn-sm ms-1";
+      saveBtn.innerText = '💾';
+      saveBtn.onclick = () => saveVoter(index);
+      row.cells[4].appendChild(saveBtn);
+    }
+
+    async function saveVoter(index) {
+      const row = document.getElementById("voterTable").rows[index];
+      const id = row.cells[0].innerText;
+      const name = row.cells[1].innerText;
+      const age = row.cells[2].innerText;
+      const constituency = row.cells[3].innerText;
+
+      await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, age, constituency })
+      });
+
+      await fetchVoters();
+    }
+
+    async function deleteVoter(id) {
+      if (confirm("Are you sure you want to delete this voter?")) {
+        await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+        await fetchVoters();
+      }
+    }
+
+    // Initial load
+    fetchVoters();
+  </script>
+</body>
+</html>
